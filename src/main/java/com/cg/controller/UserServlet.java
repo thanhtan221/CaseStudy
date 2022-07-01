@@ -100,7 +100,6 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/AddUser.jsp");
         dispatcher.forward(request, response);
 
-
     }
 
     private void ShowEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

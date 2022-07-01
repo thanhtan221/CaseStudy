@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%@include file="../assets/layout/header.jsp" %>
     <script src="/assets/message/js/iziToast.min.js"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 </head>
 
@@ -65,11 +66,11 @@
 
                                                 <td><c:out value="${billList.drinks}"/></td>
 
-                                                <td><c:out value="${billList.price}"/></td>
+                                                <td> <fmt:formatNumber type="currency" pattern="#,###" value="${billList.price}"/> đ</td>
                                                 <td><c:out value="${billList.quantity}"/></td>
-                                                <td><c:out value="${billList.tien_gui}"/> đ</td>
-                                                <td><c:out value="${billList.oder}"/> đ</td>
-                                                <td><c:out value="${billList.tien_du}"/> đ</td>
+                                                <td><fmt:formatNumber type="currency" pattern="#,###" value="${billList.tien_gui}"/> đ</td>
+                                                <td><fmt:formatNumber type="currency" pattern="#,###" value="${billList.oder}"/> đ</td>
+                                                <td> <fmt:formatNumber type="currency" pattern="#,###" value="${billList.tien_du}"/> đ</td>
                                                 <td>
                                                     <div class="btn-group dropdown">
                                                         <a href="javascript: void(0);"

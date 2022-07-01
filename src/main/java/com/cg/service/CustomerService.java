@@ -29,9 +29,10 @@ public class CustomerService implements IOUCustomer {
     private static final String ODER_CART_SQL = "INSERT INTO cart (oder_id,quantity) VALUE (?,'1');";
     private static final String BY_ID_CUSTOMER_SQL = "SELECT ct.id,ms.Drinks,ms.Price,ms.image FROM menucafeshop ms WHERE ct.id=?;";
     private static final String TOTAL_SQL ="SELECT SUM(ms.Price * ct.quantity) total FROM cart ct JOIN menucafeshop ms ON ms.id=ct.oder_id WHERE ct.deleted = '0';";
-    private static final String UPDATE_CART_SQL = "UPDATE cart SET quantity = ? WHERE id = ?;";
+    private static final String UPDATE_CART_SQL = "UPDATE cart SET quantity = ? WHERE id = ?;" ;
     private static final String BY_ID_CART_SQL = "SELECT ct.id,ms.Drinks,ms.Price,ms.image,ct.quantity,(ms.Price * ct.quantity) as cash FROM cart ct JOIN menucafeshop ms ON ms.id=ct.oder_id WHERE ct.id = ?;";
     private static final String DELETE_CART_SQL = "UPDATE cart ct SET ct.deleted = '1' WHERE ct.id = ?;";
+    private static final String ADd_MENU_SQL = "INSERT INTO menucafeshop (Drinks,Price,image) VALUE (?,?,?);";
 
     @Override
     public List<Customer> SelectMenu() {
@@ -100,6 +101,18 @@ public class CustomerService implements IOUCustomer {
             preparedStatement.setInt(1, customer.getOder_id());
             preparedStatement.executeUpdate();
         }  catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void AddMenu(Customer customer){
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(ADd_MENU_SQL);
+            preparedStatement.setString(1,customer.getDrinks());
+            preparedStatement.setLong(2,customer.getPrice());
+            preparedStatement.setString(3,customer.getImage());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

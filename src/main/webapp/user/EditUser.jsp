@@ -62,9 +62,7 @@
                                                 <div class="valid-tooltip">
                                                     Looks good!
                                                 </div>
-                                                <div class="invalid-tooltip">
-                                                    Please enter first name.
-                                                </div>
+
                                             </div>
                                             <div class="form-group position-relative mb-3">
                                                 <label for="validationTooltip01">Full Name</label>

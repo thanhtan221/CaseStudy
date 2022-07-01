@@ -88,6 +88,12 @@ public class Customer {
      public Customer() {
      }
 
+     public Customer(String drinks, String image, long price) {
+          this.drinks = drinks;
+          this.image = image;
+          this.price = price;
+     }
+
      public Customer(int id, String drinks, String image, long price) {
           this.id = id;
           this.drinks = drinks;

@@ -34,6 +34,9 @@
                         <li>
                             <a href="/cart">Cart</a>
                         </li>
+                        <li>
+                            <a href="/addmenu">Add Menu</a>
+                        </li>
                     </ul>
                 </li>
                 <li>

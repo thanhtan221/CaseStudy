@@ -12,6 +12,44 @@ public class Bill {
     private long tien_gui;
     private long oder;
     private long tien_du;
+    private int user_id;
+    private int cart_id;
+
+    public Bill(int id_bill, Date dateExport, String name, String drinks, long price, long quantity, long tien_gui, long oder, long tien_du, int user_id, int cart_id) {
+        this.id_bill = id_bill;
+        this.dateExport = dateExport;
+        this.name = name;
+        this.drinks = drinks;
+        this.price = price;
+        this.quantity = quantity;
+        this.tien_gui = tien_gui;
+        this.oder = oder;
+        this.tien_du = tien_du;
+        this.user_id = user_id;
+        this.cart_id = cart_id;
+    }
+
+    public Bill( int user_id, int cart_id,long tien_gui) {
+        this.tien_gui = tien_gui;
+        this.user_id = user_id;
+        this.cart_id = cart_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getCart_id() {
+        return cart_id;
+    }
+
+    public void setCart_id(int cart_id) {
+        this.cart_id = cart_id;
+    }
 
     public Bill() {
     }

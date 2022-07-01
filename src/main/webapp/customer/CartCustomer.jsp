@@ -16,6 +16,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 </head>
 <body>
@@ -96,25 +97,30 @@
                     </div>
                 </div>
             </td>
-            <td data-th="Price"><c:out value="${customerList.price}"/> đ</td>
+
+            <td data-th="Price"><fmt:formatNumber type="currency" pattern="#,###" value="${customerList.price}"/> đ</td>
             <td data-th="Quantity" class="text-center" ><c:out value="${customerList.quantity}"/></td>
-            <td data-th="Subtotal" class="text-center" name="cash"><c:out value="${customerList.cash}"/>đ</td>
+            <td data-th="Subtotal" class="text-center" name="cash"><fmt:formatNumber type="currency" pattern="#,###" value="${customerList.cash}"/> đ</td>
             <td class="actions" data-th="">
-                <a href="/cart?action=editcart&id=${customerList.id}"><i class="fa fa-edit"></i></a>
+                <a href="/cart?action=editcart&id=${customerList.id}"><i class="fa-solid fa-plus"></i></a>
                 </td>
             <td class="actions" data-th="">
             <a href="/cart?action=deletedcart&id=${customerList.id}"><i class="fa-solid fa-trash"></i></a>
+            </td>
+            <td></td>
+            <td class="actions" data-th="">
+                <a href="/cart?action=addbill&id=${customerList.id}"><i class="fa-solid fa-comment-dollar"></i></a>
             </td>
             </tr>
         </c:forEach>
         </tbody>
         <tfoot>
-    <tr>
+        <tr>
         <td><a href="customer?action=menucustomer" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
         </td>
         <td colspan="2" class="hidden-xs">Tổng Tiền :  </td>
                 <c:forEach var="customerLists" items="${customerLists}">
-        <td class="hidden-xs text-center"> <strong> <c:out value="${customerLists.total}"/>đ</strong>
+        <td class="hidden-xs text-center"> <strong><fmt:formatNumber type="currency" pattern="#,###" value="${customerLists.total}"/> đ</strong>
         </td>
                 </c:forEach>
         <td><a href="http://hocwebgiare.com/" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>

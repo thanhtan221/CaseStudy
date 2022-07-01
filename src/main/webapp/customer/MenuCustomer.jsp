@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <%@include file="../assetsCustomer/layoutCustomer/header.jsp" %>
->
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 </head>
 
@@ -74,7 +74,7 @@
                                                 <div class="why-text">
                                                     <h4 name="id"><c:out value="${customerList.id}"/></h4>
                                                     <h4><c:out value="${customerList.drinks}"/></h4>
-                                                    <p> Price : <c:out value="${customerList.price}"/>Đ</p>
+                                                    <p> Price : <fmt:formatNumber type="currency" pattern="#,###" value="${customerList.price}"/> đ</p>
                                                 </div>
                                             </div>
                                         </a>

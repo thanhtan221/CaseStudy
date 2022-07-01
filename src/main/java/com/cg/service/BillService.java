@@ -24,6 +24,22 @@ public class BillService {
     }
 
     private static final String BILL_SQL = "SELECT id_bill,dateExport,name,Drinks,Price,quantity,tien_gui,oder,tien_du FROM vw_bill;";
+    private static final String ADD_BILL_SQL = "INSERT INTO `bill` (user_id,cart_id,tien_gui) VALUE (?,?,?)";
+
+    public void AddBill(Bill bill){
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_BILL_SQL);
+            preparedStatement.setInt(1,bill.getCart_id());
+            preparedStatement.setInt(2,bill.getCart_id());
+            preparedStatement.setLong(3,bill.getTien_gui());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public List<Bill> SELECTBILL(){
         List<Bill> billList = new ArrayList<>();

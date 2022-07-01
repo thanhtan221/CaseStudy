@@ -1,6 +1,8 @@
 package com.cg.controller;
 
+import com.cg.model.Bill;
 import com.cg.model.Customer;
+import com.cg.service.BillService;
 import com.cg.service.CustomerService;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +17,7 @@ import java.util.List;
 @WebServlet(value = "/cart")
 public class CartCustomerServlet extends HttpServlet {
     CustomerService customerService = new CustomerService();
+    BillService billService = new BillService();
 
 
     @Override
@@ -31,6 +34,9 @@ public class CartCustomerServlet extends HttpServlet {
                 break;
             case "editcart":
                 ShowEdit(request, response);
+                break;
+            case"addbill":
+                ShowAddBill(request,response);
                 break;
             case"deletedcart":
                 ShowDeleted(request,response);
@@ -54,6 +60,9 @@ public class CartCustomerServlet extends HttpServlet {
                 break;
             case "deletedcart":
                 Deleted(request,response);
+                break;
+            case "addbill":
+                addbill(request,response);
                 break;
             default:
                 listCart(request, response);
@@ -93,7 +102,7 @@ public class CartCustomerServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("customer/EditCustomer.jsp");
             request.setAttribute("customerList", customer);
             dispatcher.forward(request, response);
-        } else {
+        } else  {
             request.setAttribute("color", color);
             message = "Edit Success";
             request.setAttribute("message", message);
@@ -128,5 +137,23 @@ public class CartCustomerServlet extends HttpServlet {
         request.setAttribute("customerList", customerList);
         dispatcher.forward(request, response);
 
+    }
+    private void addbill(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
+        int cart_id = Integer.parseInt(request.getParameter("cart_id"));
+        long tien_gui =Integer.parseInt(request.getParameter("tien_gui"));
+        Bill bill = new Bill(user_id,cart_id,tien_gui);
+        billService.AddBill(bill);
+        List<Customer> customerList = customerService.SeleCart();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bill/AddBill.jsp");
+        request.setAttribute("customerList", customerList);
+        dispatcher.forward(request, response);
+
+    }
+    private void ShowAddBill(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        List<Customer> customerList = customerService.SeleCart();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("bill/AddBill.jsp");
+        request.setAttribute("customerList", customerList);
+        dispatcher.forward(request, response);
     }
 }

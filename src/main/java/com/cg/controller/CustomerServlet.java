@@ -57,6 +57,7 @@ public class CustomerServlet extends HttpServlet {
                 case "addCart":
                     addCart(request,response);
                     break;
+
                 default:
                     listCustomer(request, response);
                     break;
@@ -91,6 +92,8 @@ public class CustomerServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+
+
 
 
 }

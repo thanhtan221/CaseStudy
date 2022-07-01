@@ -29,6 +29,7 @@ public class UserService implements IOUserService {
 
 
 
+
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -107,6 +108,9 @@ public class UserService implements IOUserService {
         }
         return inserted;
     }
+    public void AddMenu(){
+
+    }
 
     @Override
     public User ShowUser(int id) {
@@ -148,7 +152,6 @@ public class UserService implements IOUserService {
             preparedStatement.setString(7,user.getRole());
             preparedStatement.setInt(8, user.getId());
             rowUpdated = preparedStatement.executeUpdate() > 0;
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

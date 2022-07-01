@@ -12,6 +12,7 @@
     <link href="/assets/message/css/iziToast.min.css" rel="stylesheet" type="text/css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="/assets/message/js/iziToast.min.js"></script>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 </head>
 <body>
@@ -93,13 +94,13 @@
                         </div>
                     </div>
                 </td>
-                <td data-th="Price"><c:out value="${customerList.price}"/> đ</td>
+                <td data-th="Price"><fmt:formatNumber type="currency" pattern="#,###" value="${customerList.price}"/> đ</td>
                 <td data-th="Quantity" class="text-center">
                     <input class="form-control text-center" value="<c:out value="${customerList.quantity}"/>"
                            type="number" name="quantity">
 
                 </td>
-                <td data-th="Subtotal" class="text-center"><c:out value="${customerList.cash}"/>đ</td>
+                <td data-th="Subtotal" class="text-center"><fmt:formatNumber type="currency" pattern="#,###" value="${customerList.cash}"/>  đ</td>
                 <td class="actions" data-th="">
                     <button class="btn btn-info btn-sm"><i class="fa-solid fa-computer-mouse"></i></i>
                     </button>
